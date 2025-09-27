@@ -44,6 +44,10 @@ export default function Payment() {
       phone : phoneInput.current?.value || '',
      city: cityInput.current?.value || ''
     }
+     if (!address.details || !address.phone || !address.city) {
+    toast.error("Please fill in all fields before creating an order");
+    return;
+  }
 
     const isSuccessed = await createCashOrder( cartId || "", address );
     if(isSuccessed){
